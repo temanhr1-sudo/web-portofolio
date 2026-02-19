@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Your Name | HR Specialist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Nunito+Sans:wght@300;400;500;600&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #faf9f7;
+  --bg2: #f4f2ee;
+  --bg3: #ede9e2;
+  --white: #ffffff;
+  --border: #e8e2d9;
+  --border-soft: #f0ece5;
+  --accent: #2d6a4f;
+  --accent2: #40916c;
+  --accent3: #b7e4c7;
+  --gold: #b5860d;
+  --gold-light: #f5e6c0;
+  --gold-bg: #fdf8ed;
+  --text: #1a1916;
+  --text-mid: #4a4640;
+  --text-muted: #8a857e;
+  --text-dim: #b5b0a8;
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'Nunito Sans', sans-serif;
+  --mono: 'Space Mono', monospace;
+  --shadow: 0 2px 24px rgba(0,0,0,0.06);
+  --shadow-lg: 0 8px 48px rgba(0,0,0,0.1);
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--sans); font-weight: 400; line-height: 1.7; overflow-x: hidden; }
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--accent3); border-radius: 2px; }
+
+/* ── NAV ── */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 28px 64px; transition: all 0.4s; }
+nav.scrolled { background: rgba(250,249,247,0.94); backdrop-filter: blur(16px); padding: 18px 64px; border-bottom: 1px solid var(--border); box-shadow: 0 1px 20px rgba(0,0,0,0.04); }
+.nav-logo { font-family: var(--serif); font-size: 20px; font-weight: 500; color: var(--text); text-decoration: none; }
+.nav-logo span { color: var(--accent); font-style: italic; }
+.nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+.nav-links a { font-size: 13px; font-weight: 500; letter-spacing: 0.06em; color: var(--text-muted); text-decoration: none; text-transform: uppercase; transition: color 0.2s; position: relative; }
+.nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; height: 1.5px; width: 0; background: var(--accent); transition: width 0.3s; }
+.nav-links a:hover { color: var(--accent); }
+.nav-links a:hover::after { width: 100%; }
+.nav-cta { background: var(--accent) !important; color: white !important; padding: 10px 22px; border-radius: 2px; transition: background 0.2s, transform 0.2s !important; }
+.nav-cta::after { display: none !important; }
+.nav-cta:hover { background: var(--accent2) !important; transform: translateY(-1px) !important; color: white !important; }
+
+/* ── HERO ── */
+#hero { min-height: 100vh; display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; padding: 100px 64px 80px; position: relative; overflow: hidden; gap: 60px; }
+.hero-bg-circle { position: absolute; top: -120px; right: -120px; width: 580px; height: 580px; border-radius: 50%; background: radial-gradient(circle, rgba(183,228,199,0.28) 0%, transparent 68%); pointer-events: none; }
+.hero-content { position: relative; z-index: 1; }
+.hero-tag { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; color: var(--accent); text-transform: uppercase; margin-bottom: 28px; opacity: 0; animation: fadeUp 0.7s 0.2s forwards; }
+.hero-tag::before { content: ''; display: block; width: 28px; height: 1.5px; background: var(--accent); }
+.live-dot { display: inline-flex; align-items: center; gap: 7px; }
+.live-dot::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; animation: blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.75)} }
+.hero-name { font-family: var(--serif); font-size: clamp(52px,5.5vw,82px); font-weight: 400; line-height: 1.06; letter-spacing: -0.01em; margin-bottom: 14px; opacity: 0; animation: fadeUp 0.7s 0.35s forwards; }
+.hero-name em { font-style: italic; color: var(--accent); }
+.hero-profession { font-size: 17px; font-weight: 300; color: var(--text-muted); margin-bottom: 8px; letter-spacing: 0.02em; opacity: 0; animation: fadeUp 0.7s 0.5s forwards; }
+.hero-passion-line { display: flex; align-items: center; gap: 10px; margin-bottom: 32px; opacity: 0; animation: fadeUp 0.7s 0.58s forwards; }
+.passion-chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 100px; font-size: 12px; font-weight: 500; letter-spacing: 0.03em; }
+.passion-chip.biz { background: var(--gold-light); color: var(--gold); border: 1px solid rgba(181,134,13,0.2); }
+.passion-chip.inv { background: rgba(45,106,79,0.08); color: var(--accent); border: 1px solid rgba(45,106,79,0.18); }
+.hero-divider { width: 48px; height: 2px; background: var(--accent); margin-bottom: 26px; opacity: 0; animation: fadeUp 0.7s 0.64s forwards; }
+.hero-desc { font-size: 15.5px; color: var(--text-mid); max-width: 460px; line-height: 1.88; margin-bottom: 44px; font-weight: 300; opacity: 0; animation: fadeUp 0.7s 0.72s forwards; }
+.hero-cta { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.7s 0.86s forwards; }
+.btn-primary { padding: 14px 32px; background: var(--accent); color: white; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: background .25s, transform .2s, box-shadow .25s; box-shadow: 0 4px 20px rgba(45,106,79,.25); }
+.btn-primary:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(45,106,79,.3); }
+.btn-outline { padding: 13px 28px; border: 1.5px solid var(--border); color: var(--text-mid); font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: border-color .2s, color .2s, background .2s; }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); background: rgba(45,106,79,.04); }
+
+.hero-visual { position: relative; z-index: 1; display: flex; justify-content: center; opacity: 0; animation: fadeIn 1s 0.5s forwards; }
+.photo-wrapper { position: relative; width: 320px; }
+.photo-main { width: 100%; aspect-ratio: 3/4; background: var(--bg3); border-radius: 4px; overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow-lg); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.photo-icon { width: 72px; height: 72px; border-radius: 50%; background: var(--border); display: flex; align-items: center; justify-content: center; margin-bottom: 14px; color: var(--text-dim); }
+.photo-icon svg { width: 36px; height: 36px; }
+.photo-main p { font-family: var(--mono); font-size: 11px; color: var(--text-dim); letter-spacing: .1em; }
+.badge-exp { position: absolute; bottom: -22px; left: -26px; background: var(--white); border: 1px solid var(--border); border-radius: 4px; padding: 18px 22px; box-shadow: var(--shadow); z-index: 2; }
+.badge-exp-num { font-family: var(--serif); font-size: 34px; color: var(--accent); line-height: 1; font-weight: 400; display: block; }
+.badge-exp-label { font-family: var(--mono); font-size: 9px; letter-spacing: .15em; color: var(--text-muted); text-transform: uppercase; margin-top: 2px; }
+.badge-role { position: absolute; top: 28px; right: -22px; background: var(--accent); border-radius: 4px; padding: 12px 16px; box-shadow: 0 4px 20px rgba(45,106,79,.3); z-index: 2; }
+.badge-role p { font-family: var(--mono); font-size: 10px; color: white; letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; }
+
+/* ── SECTION ── */
+section { padding: 100px 64px; }
+.section-label { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 10.5px; letter-spacing: .2em; color: var(--accent); text-transform: uppercase; margin-bottom: 16px; }
+.section-label::before { content: ''; display: block; width: 28px; height: 1.5px; background: var(--accent); }
+.section-title { font-family: var(--serif); font-size: clamp(34px,3.5vw,52px); font-weight: 400; line-height: 1.12; letter-spacing: -.01em; margin-bottom: 60px; }
+.section-title em { font-style: italic; color: var(--accent); }
+
+/* ── ABOUT ── */
+#about { background: var(--white); border-top: 1px solid var(--border); }
+.about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.about-text p { font-size: 15px; color: var(--text-mid); line-height: 1.9; margin-bottom: 18px; font-weight: 300; }
+.about-text p strong { color: var(--text); font-weight: 600; }
+.about-text p em { color: var(--accent); font-style: italic; }
+.about-values { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 28px; }
+.val-tag { padding: 6px 14px; border-radius: 100px; font-size: 12px; font-weight: 500; }
+.val-tag.hr { background: rgba(45,106,79,.08); border: 1px solid rgba(45,106,79,.18); color: var(--accent); }
+.val-tag.gold { background: var(--gold-light); border: 1px solid rgba(181,134,13,.2); color: var(--gold); }
+
+/* Skills */
+.skills-cat { margin-bottom: 32px; }
+.skills-cat-title { font-family: var(--mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border-soft); }
+.skill-row { display: flex; align-items: center; margin-bottom: 11px; }
+.skill-name { font-size: 13.5px; font-weight: 500; color: var(--text-mid); white-space: nowrap; min-width: 160px; }
+.skill-bar-wrap { display: flex; align-items: center; gap: 10px; flex: 1; }
+.skill-bar { flex: 1; height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
+.skill-fill { height: 100%; border-radius: 2px; width: 0; transition: width 1.4s cubic-bezier(0.16,1,0.3,1); }
+.skill-fill.hr { background: linear-gradient(to right, var(--accent), var(--accent2)); }
+.skill-fill.gold { background: linear-gradient(to right, var(--gold), #d4a017); }
+.skill-pct { font-family: var(--mono); font-size: 10px; color: var(--text-dim); min-width: 28px; text-align: right; }
+
+/* ── EXPERIENCE ── */
+#experience { background: var(--bg); }
+.exp-list { max-width: 780px; }
+.exp-card { background: var(--white); border: 1px solid var(--border); border-radius: 4px; padding: 30px; margin-bottom: 16px; position: relative; transition: box-shadow .3s, border-color .3s, transform .3s; overflow: hidden; }
+.exp-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--accent); transform: scaleY(0); transition: transform .3s; transform-origin: bottom; }
+.exp-card:hover { box-shadow: var(--shadow); border-color: rgba(45,106,79,.2); transform: translateY(-2px); }
+.exp-card:hover::before { transform: scaleY(1); }
+.exp-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 4px; flex-wrap: wrap; }
+.exp-period-badge { font-family: var(--mono); font-size: 9.5px; letter-spacing: .1em; color: var(--accent); background: rgba(45,106,79,.08); padding: 3px 10px; border-radius: 100px; white-space: nowrap; }
+.exp-role { font-family: var(--serif); font-size: 20px; font-weight: 400; color: var(--text); line-height: 1.3; }
+.exp-company { font-size: 12.5px; font-weight: 600; color: var(--text-muted); margin-bottom: 12px; }
+.exp-desc { font-size: 13.5px; color: var(--text-muted); line-height: 1.8; font-weight: 300; margin-bottom: 16px; }
+.exp-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.exp-tag { font-size: 11px; font-weight: 500; color: var(--text-mid); background: var(--bg2); border: 1px solid var(--border-soft); padding: 3px 10px; border-radius: 2px; }
+
+/* ── PASSION SECTION ── */
+#passion { background: var(--gold-bg); border-top: 1px solid rgba(181,134,13,.15); border-bottom: 1px solid rgba(181,134,13,.15); }
+#passion .section-label { color: var(--gold); }
+#passion .section-label::before { background: var(--gold); }
+#passion .section-title em { color: var(--gold); }
+.passion-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.passion-card { background: var(--white); border: 1px solid rgba(181,134,13,.15); border-radius: 4px; padding: 30px 28px; transition: box-shadow .3s, transform .3s, border-color .3s; position: relative; overflow: hidden; }
+.passion-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, var(--gold), #d4a017); transform: scaleX(0); transition: transform .35s; transform-origin: left; }
+.passion-card:hover { box-shadow: 0 8px 32px rgba(181,134,13,.12); transform: translateY(-3px); border-color: rgba(181,134,13,.3); }
+.passion-card:hover::after { transform: scaleX(1); }
+.passion-icon { font-size: 30px; margin-bottom: 16px; display: block; }
+.passion-card-title { font-family: var(--serif); font-size: 20px; font-weight: 400; margin-bottom: 10px; color: var(--text); }
+.passion-card-desc { font-size: 13.5px; color: var(--text-muted); line-height: 1.8; font-weight: 300; }
+.passion-tags { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 7px; }
+.passion-tag { font-size: 11px; font-weight: 500; color: var(--gold); background: var(--gold-light); border: 1px solid rgba(181,134,13,.2); padding: 3px 10px; border-radius: 2px; }
+
+/* ── PORTFOLIO ── */
+#portfolio { background: var(--bg2); border-top: 1px solid var(--border); }
+.portfolio-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.portfolio-card { background: var(--white); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; transition: box-shadow .3s, transform .3s, border-color .3s; }
+.portfolio-card:first-child { grid-column: span 2; }
+.portfolio-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); border-color: rgba(45,106,79,.2); }
+.p-thumb { width: 100%; height: 200px; background: var(--bg3); display: flex; align-items: center; justify-content: center; position: relative; }
+.portfolio-card:first-child .p-thumb { height: 248px; }
+.p-thumb-icon { width: 54px; height: 54px; border-radius: 50%; border: 1px solid var(--border); background: var(--white); display: flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: var(--shadow); transition: transform .3s; }
+.portfolio-card:hover .p-thumb-icon { transform: scale(1.08); }
+.p-num { position: absolute; top: 14px; left: 18px; font-family: var(--mono); font-size: 10px; color: var(--text-dim); letter-spacing: .1em; }
+.p-body { padding: 22px 24px 26px; }
+.p-cat { font-family: var(--mono); font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: 7px; }
+.p-cat.gold { color: var(--gold); }
+.p-title { font-family: var(--serif); font-size: 20px; font-weight: 400; margin-bottom: 8px; line-height: 1.3; }
+.p-desc { font-size: 13px; color: var(--text-muted); line-height: 1.72; font-weight: 300; margin-bottom: 16px; }
+.p-link { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); text-decoration: none; transition: gap .2s; }
+.p-link.gold { color: var(--gold); }
+.p-link:hover { gap: 13px; }
+.p-link::after { content: '→'; }
+
+/* ── CONTACT ── */
+#contact { background: var(--white); border-top: 1px solid var(--border); }
+.contact-layout { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 80px; align-items: start; }
+.contact-sub { font-size: 15px; color: var(--text-muted); line-height: 1.88; font-weight: 300; max-width: 440px; margin-bottom: 40px; }
+.contact-items { display: flex; flex-direction: column; gap: 13px; margin-bottom: 40px; }
+.c-item { display: flex; align-items: center; gap: 16px; padding: 15px 20px; background: var(--bg); border: 1px solid var(--border-soft); border-radius: 4px; text-decoration: none; color: inherit; transition: border-color .2s, background .2s, transform .2s; }
+.c-item:hover { border-color: rgba(45,106,79,.25); background: rgba(45,106,79,.03); transform: translateX(4px); }
+.c-icon { width: 36px; height: 36px; border-radius: 50%; background: rgba(45,106,79,.1); display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+.c-label { font-family: var(--mono); font-size: 9.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 2px; }
+.c-value { font-size: 14px; font-weight: 500; color: var(--text-mid); }
+.social-title { font-family: var(--mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 18px; }
+.social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
+.s-card { display: flex; align-items: center; gap: 11px; padding: 14px 15px; background: var(--bg); border: 1px solid var(--border-soft); border-radius: 4px; text-decoration: none; color: inherit; transition: all .25s; }
+.s-card:hover { background: var(--white); box-shadow: var(--shadow); transform: translateY(-2px); border-color: var(--border); }
+.s-icon { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+.s-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 1px; }
+.s-handle { font-family: var(--mono); font-size: 10px; color: var(--text-dim); }
+.avail-card { background: var(--accent); border-radius: 4px; padding: 34px 30px; color: white; position: sticky; top: 100px; }
+.avail-status { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; opacity: .85; margin-bottom: 20px; }
+.avail-status::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #b7e4c7; flex-shrink: 0; animation: blink 2s infinite; }
+.avail-title { font-family: var(--serif); font-size: 25px; font-weight: 400; line-height: 1.32; margin-bottom: 13px; }
+.avail-desc { font-size: 13.5px; opacity: .75; line-height: 1.72; margin-bottom: 26px; font-weight: 300; }
+.avail-btn { display: block; padding: 13px 24px; background: rgba(255,255,255,.15); border: 1.5px solid rgba(255,255,255,.3); color: white; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; border-radius: 2px; text-align: center; transition: background .2s; }
+.avail-btn:hover { background: rgba(255,255,255,.25); }
+.avail-tags { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px; }
+.avail-tag { font-size: 11px; font-weight: 500; color: rgba(255,255,255,.75); background: rgba(255,255,255,.1); padding: 4px 12px; border-radius: 100px; }
+
+/* FOOTER */
+footer { background: var(--text); color: rgba(255,255,255,.4); padding: 32px 64px; display: flex; justify-content: space-between; align-items: center; }
+footer p { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; }
+.footer-name { font-family: var(--serif); font-size: 16px; color: rgba(255,255,255,.65); font-style: italic; }
+
+/* ANIMATIONS */
+@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+.reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+.reveal.in { opacity: 1; transform: translateY(0); }
+.d1{transition-delay:.08s} .d2{transition-delay:.16s} .d3{transition-delay:.24s} .d4{transition-delay:.32s}
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  nav { padding: 22px 28px; }
+  nav.scrolled { padding: 14px 28px; }
+  .nav-links { display: none; }
+  #hero { grid-template-columns: 1fr; padding: 110px 28px 60px; gap: 48px; }
+  .photo-wrapper { width: 260px; }
+  section { padding: 72px 28px; }
+  .about-layout, .contact-layout { grid-template-columns: 1fr; gap: 48px; }
+  .passion-grid { grid-template-columns: 1fr; }
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .portfolio-card:first-child { grid-column: span 1; }
+  .social-grid { grid-template-columns: 1fr; }
+  footer { flex-direction: column; gap: 10px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">Your<span>Name</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#passion">Passion</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-bg-circle"></div>
+  <div class="hero-content">
+    <p class="hero-tag"><span class="live-dot">Open to Opportunities</span></p>
+    <h1 class="hero-name">Your<br><em>Full Name</em></h1>
+    <p class="hero-profession">HR Specialist</p>
+    <div class="hero-passion-line">
+      <span class="passion-chip biz">🏢 Bisnis</span>
+      <span class="passion-chip inv">📈 Investasi</span>
+    </div>
+    <div class="hero-divider"></div>
+    <p class="hero-desc">Profesional HR yang bersemangat membangun lingkungan kerja yang produktif dan manusiawi — sekaligus seorang penggemar dunia bisnis dan investasi yang terus belajar mengelola dan menumbuhkan aset.</p>
+    <div class="hero-cta">
+      <a href="#portfolio" class="btn-primary">Lihat Portfolio</a>
+      <a href="#contact" class="btn-outline">Hubungi Saya</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="photo-wrapper">
+      <div class="photo-main">
+        <div class="photo-icon">
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="20" cy="14" r="7"/>
+            <path d="M6 34c0-7.732 6.268-14 14-14s14 6.268 14 14"/>
+          </svg>
+        </div>
+        <p>Foto Kamu</p>
+      </div>
+      <div class="badge-exp">
+        <span class="badge-exp-num">6+</span>
+        <span class="badge-exp-label">Tahun di HR</span>
+      </div>
+      <div class="badge-role"><p>✦ HR Specialist</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section id="about">
+  <div class="section-label reveal">Tentang Saya</div>
+  <h2 class="section-title reveal d1">Mengelola manusia,<br><em>mencintai angka</em></h2>
+  <div class="about-layout">
+    <div class="about-text reveal d2">
+      <p>Halo! Saya <strong>Your Name</strong> — seorang <em>HR Specialist</em> yang percaya bahwa karyawan yang bahagia adalah fondasi dari bisnis yang sukses. Selama 6+ tahun saya mendedikasikan karier untuk membangun sistem HR yang manusiawi sekaligus efisien.</p>
+      <p>Di luar pekerjaan, saya adalah orang yang <strong>gemar belajar tentang dunia bisnis dan investasi</strong>. Bagi saya, memahami cara kerja uang dan pasar bukan hanya soal keuntungan — melainkan tentang membangun kemandirian finansial yang berkelanjutan.</p>
+      <p>Dua dunia ini sebenarnya berkaitan erat: <em>memahami manusia membantu saya membaca bisnis, dan memahami bisnis membantu saya menjadi HR yang lebih strategis.</em></p>
+      <div class="about-values">
+        <span class="val-tag hr">People-First</span>
+        <span class="val-tag hr">Empati</span>
+        <span class="val-tag hr">Detail-Oriented</span>
+        <span class="val-tag gold">Bisnis</span>
+        <span class="val-tag gold">Investasi</span>
+        <span class="val-tag gold">Growth Mindset</span>
+      </div>
+    </div>
+    <div class="skills-box reveal d3">
+      <div class="skills-cat">
+        <div class="skills-cat-title">👥 HR Skills</div>
+        <div class="skill-row"><span class="skill-name">Rekrutmen & Seleksi</span><div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-fill hr" data-w="93%"></div></div><span class="skill-pct">93%</span></div></div>
+        <div class="skill-row"><span class="skill-name">Training & Development</span><div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-fill hr" data-w="87%"></div></div><span class="skill-pct">87%</span></div></div>
+        <div class="skill-row"><span class="skill-name">Payroll & Kompensasi</span><div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-fill hr" data-w="85%"></div></div><span class="skill-pct">85%</span></div></div>
+        <div class="skill-row"><span class="skill-name">Employee Relations</span><div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-fill hr" data-w="90%"></div></div><span class="skill-pct">90%</span></div></div>
+        <div class="skill-row"><span class="skill-name">Performance Mgmt</span><div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-fill hr" data-w="82%"></div></div><span class="skill-pct">82%</span></div></div>
+      </div>
+      <div class="skills-cat">
+        <div class="skills-cat-title">📈 Passion: Bisnis & Investasi</div>
+        <div class="skill-row"><span class="skill-name">Analisis Saham</span><div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-fill gold" data-w="78%"></div></div><span class="skill-pct">78%</span></div></div>
+        <div class="skill-row"><span class="skill-name">Business Development</span><div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-fill gold" data-w="72%"></div></div><span class="skill-pct">72%</span></div></div>
+        <div class="skill-row"><span class="skill-name">Financial Literacy</span><div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-fill gold" data-w="80%"></div></div><span class="skill-pct">80%</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ EXPERIENCE ══ -->
+<section id="experience">
+  <div class="section-label reveal">Riwayat Pekerjaan</div>
+  <h2 class="section-title reveal d1">Perjalanan <em>Karier HR</em></h2>
+  <div class="exp-list">
+    <div class="exp-card reveal d1">
+      <div class="exp-header">
+        <div>
+          <h3 class="exp-role">HR Specialist</h3>
+          <div class="exp-company">PT. Maju Bersama Tbk · Jakarta</div>
+        </div>
+        <span class="exp-period-badge">2022 — Sekarang</span>
+      </div>
+      <p class="exp-desc">Memimpin proses rekrutmen end-to-end untuk 50+ posisi per tahun di berbagai divisi. Merancang dan mengimplementasikan sistem performance management berbasis OKR yang meningkatkan employee engagement sebesar 30%. Mengelola program onboarding dan pengembangan karyawan untuk 200+ headcount.</p>
+      <div class="exp-tags"><span class="exp-tag">Rekrutmen</span><span class="exp-tag">Performance Management</span><span class="exp-tag">Onboarding</span><span class="exp-tag">HRIS</span><span class="exp-tag">OKR</span></div>
+    </div>
+    <div class="exp-card reveal d2">
+      <div class="exp-header">
+        <div>
+          <h3 class="exp-role">HR Generalist</h3>
+          <div class="exp-company">CV. Solusi Prima · Jakarta</div>
+        </div>
+        <span class="exp-period-badge">2020 — 2022</span>
+      </div>
+      <p class="exp-desc">Menangani seluruh administrasi kepegawaian mulai dari kontrak kerja hingga proses offboarding. Mengkoordinasikan program pelatihan internal dan mengembangkan modul SOP HR yang kemudian menjadi standar perusahaan. Menjadi mediator dalam penyelesaian hubungan industrial.</p>
+      <div class="exp-tags"><span class="exp-tag">HR Admin</span><span class="exp-tag">Payroll</span><span class="exp-tag">Training</span><span class="exp-tag">Industrial Relations</span></div>
+    </div>
+    <div class="exp-card reveal d3">
+      <div class="exp-header">
+        <div>
+          <h3 class="exp-role">HR & Admin Staff</h3>
+          <div class="exp-company">Startup Kreatif XYZ · Jakarta</div>
+        </div>
+        <span class="exp-period-badge">2018 — 2020</span>
+      </div>
+      <p class="exp-desc">Bergabung sejak awal berdirinya startup, membantu membangun fondasi sistem HR dari nol. Mengelola rekrutmen, absensi, dan benefit karyawan. Pengalaman ini memberi saya perspektif unik tentang bagaimana HR berkontribusi langsung pada pertumbuhan bisnis.</p>
+      <div class="exp-tags"><span class="exp-tag">HR Foundation</span><span class="exp-tag">Rekrutmen</span><span class="exp-tag">Administrasi</span><span class="exp-tag">Startup Environment</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PASSION ══ -->
+<section id="passion">
+  <div class="section-label reveal">Di Luar Pekerjaan</div>
+  <h2 class="section-title reveal d1">Passion: Bisnis &amp;<br><em>Investasi</em></h2>
+  <div class="passion-grid">
+    <div class="passion-card reveal d1">
+      <span class="passion-icon">📊</span>
+      <h3 class="passion-card-title">Investasi Saham & Reksa Dana</h3>
+      <p class="passion-card-desc">Saya aktif belajar dan mempraktikkan investasi di pasar modal Indonesia. Menganalisis laporan keuangan perusahaan, mengikuti perkembangan makroekonomi, dan membangun portofolio jangka panjang yang terdiversifikasi.</p>
+      <div class="passion-tags">
+        <span class="passion-tag">IDX</span>
+        <span class="passion-tag">Fundamental Analysis</span>
+        <span class="passion-tag">Value Investing</span>
+      </div>
+    </div>
+    <div class="passion-card reveal d2">
+      <span class="passion-icon">🏢</span>
+      <h3 class="passion-card-title">Bisnis & Entrepreneurship</h3>
+      <p class="passion-card-desc">Tertarik pada dunia wirausaha dan selalu ingin tahu bagaimana sebuah bisnis dibangun dan dikembangkan. Senang mempelajari model bisnis berbagai industri dan bermimpi untuk suatu saat memiliki usaha sendiri.</p>
+      <div class="passion-tags">
+        <span class="passion-tag">Business Model</span>
+        <span class="passion-tag">Strategi Bisnis</span>
+        <span class="passion-tag">Entrepreneurship</span>
+      </div>
+    </div>
+    <div class="passion-card reveal d3">
+      <span class="passion-icon">📚</span>
+      <h3 class="passion-card-title">Financial Literacy & Learning</h3>
+      <p class="passion-card-desc">Rutin membaca buku dan mengikuti perkembangan ekonomi, keuangan, dan bisnis global. Percaya bahwa literasi keuangan adalah skill hidup yang penting — dan saya senang berbagi pengetahuan ini dengan orang-orang di sekitar saya.</p>
+      <div class="passion-tags">
+        <span class="passion-tag">Literasi Keuangan</span>
+        <span class="passion-tag">Ekonomi</span>
+        <span class="passion-tag">Self Learning</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PORTFOLIO ══ -->
+<section id="portfolio">
+  <div class="section-label reveal">Karya & Proyek</div>
+  <h2 class="section-title reveal d1">Portfolio <em>Pilihan</em></h2>
+  <div class="portfolio-grid">
+    <div class="portfolio-card reveal">
+      <div class="p-thumb" style="background:linear-gradient(135deg,#f0f7f3,#d8eee3)">
+        <span class="p-num">01</span>
+        <div class="p-thumb-icon">🎯</div>
+      </div>
+      <div class="p-body">
+        <div class="p-cat">HR Strategy</div>
+        <h3 class="p-title">Sistem Performance Management OKR</h3>
+        <p class="p-desc">Merancang dan mengimplementasikan sistem KPI berbasis OKR untuk 200+ karyawan lintas divisi. Hasilnya: employee engagement naik 30%, produktivitas tim meningkat 25% dalam satu kuartal pertama.</p>
+        <a href="#" class="p-link">Lihat Detail</a>
+      </div>
+    </div>
+    <div class="portfolio-card reveal d1">
+      <div class="p-thumb" style="background:linear-gradient(135deg,#fdf5e0,#f5e6c0)">
+        <span class="p-num">02</span>
+        <div class="p-thumb-icon">📝</div>
+      </div>
+      <div class="p-body">
+        <div class="p-cat gold">Personal Project</div>
+        <h3 class="p-title">Blog: Catatan Investor Pemula</h3>
+        <p class="p-desc">Mendokumentasikan perjalanan belajar investasi saham — dari analisis emiten hingga refleksi portofolio bulanan. Sudah dibaca 5.000+ pembaca.</p>
+        <a href="#" class="p-link gold">Lihat Blog</a>
+      </div>
+    </div>
+    <div class="portfolio-card reveal d2">
+      <div class="p-thumb" style="background:linear-gradient(135deg,#f3f0f7,#e3d8f0)">
+        <span class="p-num">03</span>
+        <div class="p-thumb-icon">🎓</div>
+      </div>
+      <div class="p-body">
+        <div class="p-cat">Training Program</div>
+        <h3 class="p-title">Program Leadership Development</h3>
+        <p class="p-desc">Merancang kurikulum dan modul pelatihan leadership 3 bulan untuk 20 orang middle management dengan format blended learning.</p>
+        <a href="#" class="p-link">Lihat Detail</a>
+      </div>
+    </div>
+    <div class="portfolio-card reveal d2">
+      <div class="p-thumb" style="background:linear-gradient(135deg,#eef4f0,#cfe4d6)">
+        <span class="p-num">04</span>
+        <div class="p-thumb-icon">📋</div>
+      </div>
+      <div class="p-body">
+        <div class="p-cat">HR System</div>
+        <h3 class="p-title">SOP HR Komprehensif</h3>
+        <p class="p-desc">Menyusun SOP lengkap mulai dari rekrutmen, onboarding, penilaian kinerja, hingga offboarding yang kini menjadi standar perusahaan.</p>
+        <a href="#" class="p-link">Lihat Detail</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact">
+  <div class="section-label reveal">Kontak</div>
+  <h2 class="section-title reveal d1">Ayo <em>Terhubung</em></h2>
+  <div class="contact-layout">
+    <div>
+      <p class="contact-sub reveal d2">Saya terbuka untuk diskusi seputar HR, berbagi cerita soal investasi, atau mengeksplorasi peluang karier dan kolaborasi yang menarik. Jangan ragu untuk menghubungi saya!</p>
+      <div class="contact-items reveal d2">
+        <a href="mailto:hello@yourname.com" class="c-item">
+          <div class="c-icon">✉️</div>
+          <div><div class="c-label">Email</div><div class="c-value">hello@yourname.com</div></div>
+        </a>
+        <a href="tel:+6281234567890" class="c-item">
+          <div class="c-icon">📱</div>
+          <div><div class="c-label">WhatsApp / Telepon</div><div class="c-value">+62 812-3456-7890</div></div>
+        </a>
+        <div class="c-item">
+          <div class="c-icon">📍</div>
+          <div><div class="c-label">Lokasi</div><div class="c-value">Jakarta, Indonesia</div></div>
+        </div>
+      </div>
+      <div class="reveal d3">
+        <div class="social-title">Temukan Saya Di</div>
+        <div class="social-grid">
+          <a href="#" class="s-card">
+            <div class="s-icon" style="background:#e8f4fd">💼</div>
+            <div><div class="s-name">LinkedIn</div><div class="s-handle">@yourname</div></div>
+          </a>
+          <a href="#" class="s-card">
+            <div class="s-icon" style="background:#fce4ec">📸</div>
+            <div><div class="s-name">Instagram</div><div class="s-handle">@yourname</div></div>
+          </a>
+          <a href="#" class="s-card">
+            <div class="s-icon" style="background:#fff8e1">📈</div>
+            <div><div class="s-name">StockBit</div><div class="s-handle">@yourname</div></div>
+          </a>
+          <a href="#" class="s-card">
+            <div class="s-icon" style="background:#f3e5f5">✍️</div>
+            <div><div class="s-name">Medium / Blog</div><div class="s-handle">@yourname</div></div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="reveal d2">
+      <div class="avail-card">
+        <div class="avail-status">Tersedia Sekarang</div>
+        <h3 class="avail-title">Mari Diskusi &amp; Berkolaborasi!</h3>
+        <p class="avail-desc">Apakah tentang HR, bisnis, atau investasi — saya selalu senang bertemu orang-orang baru dan bertukar ide. Let's connect!</p>
+        <a href="mailto:hello@yourname.com" class="avail-btn">Kirim Pesan</a>
+        <div class="avail-tags">
+          <span class="avail-tag">HR Full-time</span>
+          <span class="avail-tag">Konsultasi HR</span>
+          <span class="avail-tag">Ngobrol Bisnis</span>
+          <span class="avail-tag">Komunitas Invest</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span class="footer-name">Your Name</span></p>
+  <p>HR Specialist · Bisnis & Investasi Enthusiast · Jakarta</p>
+</footer>
+
+<script>
+// Navbar scroll
+window.addEventListener('scroll', () =>
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50)
+);
+
+// Scroll reveal
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(r => io.observe(r));
+
+// Skill bars
+const sio = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting)
+      e.target.querySelectorAll('.skill-fill').forEach(b => b.style.width = b.dataset.w);
+  });
+}, { threshold: 0.2 });
+const about = document.getElementById('about');
+if (about) sio.observe(about);
+</script>
+</body>
+</html>

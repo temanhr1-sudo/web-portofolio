@@ -106,17 +106,14 @@ section { padding: 100px 64px; }
 .val-tag.hr { background: rgba(45,106,79,.08); border: 1px solid rgba(45,106,79,.18); color: var(--accent); }
 .val-tag.gold { background: var(--gold-light); border: 1px solid rgba(181,134,13,.2); color: var(--gold); }
 
-/* Skills */
+/* ── SKILLS BADGES ── */
 .skills-cat { margin-bottom: 32px; }
 .skills-cat-title { font-family: var(--mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border-soft); }
-.skill-row { display: flex; align-items: center; margin-bottom: 11px; }
-.skill-name { font-size: 13.5px; font-weight: 500; color: var(--text-mid); white-space: nowrap; min-width: 160px; }
-.skill-bar-wrap { display: flex; align-items: center; gap: 10px; flex: 1; }
-.skill-bar { flex: 1; height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
-.skill-fill { height: 100%; border-radius: 2px; width: 0; transition: width 1.4s cubic-bezier(0.16,1,0.3,1); }
-.skill-fill.hr { background: linear-gradient(to right, var(--accent), var(--accent2)); }
-.skill-fill.gold { background: linear-gradient(to right, var(--gold), #d4a017); }
-.skill-pct { font-family: var(--mono); font-size: 10px; color: var(--text-dim); min-width: 28px; text-align: right; }
+.skill-tags-group { display: flex; flex-wrap: wrap; gap: 8px; }
+.skill-badge { font-size: 13px; font-weight: 500; padding: 6px 14px; border-radius: 4px; border: 1px solid var(--border-soft); background: var(--bg); color: var(--text-mid); transition: all 0.2s ease; cursor: default; }
+.skill-badge:hover { transform: translateY(-2px); box-shadow: var(--shadow); background: var(--white); }
+.skill-badge.hr:hover { border-color: rgba(45,106,79,.4); color: var(--accent); }
+.skill-badge.gold:hover { border-color: rgba(181,134,13,.4); color: var(--gold); }
 
 /* ── EXPERIENCE ── */
 #experience { background: var(--bg); }
@@ -290,23 +287,28 @@ footer p { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; }
         <span class="val-tag gold">Growth Mindset</span>
       </div>
     </div>
-    <div class="skills-box reveal d3">
+<div class="skills-box reveal d3">
       <div class="skills-cat">
-        <div class="skills-cat-title">👥 HR Skills</div>
-        <div class="skill-row"><span class="skill-name">Rekrutmen & Seleksi</span><div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-fill hr" data-w="93%"></div></div><span class="skill-pct">93%</span></div></div>
-        <div class="skill-row"><span class="skill-name">Training & Development</span><div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-fill hr" data-w="87%"></div></div><span class="skill-pct">87%</span></div></div>
-        <div class="skill-row"><span class="skill-name">Payroll & Kompensasi</span><div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-fill hr" data-w="85%"></div></div><span class="skill-pct">85%</span></div></div>
-        <div class="skill-row"><span class="skill-name">Employee Relations</span><div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-fill hr" data-w="90%"></div></div><span class="skill-pct">90%</span></div></div>
-        <div class="skill-row"><span class="skill-name">Performance Mgmt</span><div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-fill hr" data-w="82%"></div></div><span class="skill-pct">82%</span></div></div>
+        <div class="skills-cat-title">👥 Core HR Expertise</div>
+        <div class="skill-tags-group">
+          <span class="skill-badge hr">Rekrutmen & Seleksi</span>
+          <span class="skill-badge hr">Training & Development</span>
+          <span class="skill-badge hr">Payroll & Kompensasi</span>
+          <span class="skill-badge hr">Employee Relations</span>
+          <span class="skill-badge hr">Performance Management</span>
+          <span class="skill-badge hr">SOP Development</span>
+        </div>
       </div>
       <div class="skills-cat">
         <div class="skills-cat-title">📈 Passion: Bisnis & Investasi</div>
-        <div class="skill-row"><span class="skill-name">Analisis Saham</span><div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-fill gold" data-w="78%"></div></div><span class="skill-pct">78%</span></div></div>
-        <div class="skill-row"><span class="skill-name">Business Development</span><div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-fill gold" data-w="72%"></div></div><span class="skill-pct">72%</span></div></div>
-        <div class="skill-row"><span class="skill-name">Financial Literacy</span><div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-fill gold" data-w="80%"></div></div><span class="skill-pct">80%</span></div></div>
+        <div class="skill-tags-group">
+          <span class="skill-badge gold">Analisis Saham</span>
+          <span class="skill-badge gold">Business Development</span>
+          <span class="skill-badge gold">Financial Literacy</span>
+          <span class="skill-badge gold">Value Investing</span>
+        </div>
       </div>
     </div>
-  </div>
 </section>
 
 <!-- ══ EXPERIENCE ══ -->
@@ -521,16 +523,6 @@ const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
 }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
 document.querySelectorAll('.reveal').forEach(r => io.observe(r));
-
-// Skill bars
-const sio = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting)
-      e.target.querySelectorAll('.skill-fill').forEach(b => b.style.width = b.dataset.w);
-  });
-}, { threshold: 0.2 });
-const about = document.getElementById('about');
-if (about) sio.observe(about);
 </script>
 </body>
 </html>
